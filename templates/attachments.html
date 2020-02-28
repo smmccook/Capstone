@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br class="container">
+    <h1 class="center">Related Attachments</h1>
+    <h4 style="text-align: center">Clear does not delete previously uploaded files, it clears those ready to be uploaded!</h4></br>
+    </div>
+    <div class="container">
+        {% if mine or request.user.is_staff %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Contract</th>
+                        <th>BAA</th>
+                        <th>External Access Forms</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <div class="container">
+                         <td>
+                            {{ requestform.contract }}
+                        </td>
+                        <td>
+                            {{ requestform.BAA }}
+                        </td>
+                        <td>
+                            {{ requestform.access_forms }}
+                        </td>
+                    </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        {% else %}
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Contract</th>
+                    <th>BAA</th>
+                    <th>External Access Forms</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        {{ requestform.contract }}
+                    </td>
+                    <td>
+                        {{ requestform.BAA }}
+                    </td>
+                    <td>
+                        {{ requestform.access_forms }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock content %}

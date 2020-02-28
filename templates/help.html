@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h4 class="center">Please contact IT Security at <b>'DL_IT Security Operations'</b> for any support related questions or
+            concerns</h4>
+    </div>
+    <div class="container">
+        <table class="table thead-dark table-striped">
+            <thead>
+            <tr>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Incomplete </td>
+                <th></th>
+                <td>Request has not yet been submitted for review</td>
+            </tr>
+            <tbody>
+            <tr>
+                <td>Pending </td>
+                <th></th>
+                <td>Request has been submitted for review, result pending</td>
+            </tr>
+            <tbody>
+            <tr>
+                <td>Approved </td>
+                <th></th>
+                <td>Request has been approved by IT Security, please see additional notes on request</td>
+            </tr>
+            <tbody>
+            <tr>
+                <td>Denied </td>
+                <th></th>
+                <td>Request has been denied for IT Security, please see additional notes on request </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock content %}

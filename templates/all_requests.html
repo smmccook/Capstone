@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="center">All Requests</h1>
+    </div>
+    <div class="container">
+
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Request</th>
+                    <th>Application Name</th>
+                    <th>Time Submitted (UTC)</th>
+                    <th>Requested By</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for requestform in requests %}
+                        <tr>
+                            <td><a href ="{% url 'bound_request' pk=requestform.id %}">{{ requestform.id }}: </a></td>
+                            <td>{{ requestform.app_name }}</td>
+                            <td>{{ requestform.time_submitted }}</td>
+                            <td>{{ requestform.requested_by }}</td>
+                            <td>{{ requestform.get_status_display }}</td>
+                            {% if request.user.is_staff %}
+                            <td><a href ="{% url 'edit_request' pk=requestform.id %}"><button class="btn btn-primary">edit</button></a>&nbsp;
+                                <a href ="{% url 'review_request' pk=requestform.id %}"><button class="btn btn-primary">Review</button></a></td>
+                            {% endif %}
+                        </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+{% endblock content %}

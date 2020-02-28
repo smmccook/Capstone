@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if edit %}
+        <a href ="{% url 'attachments' pk=pk %}"><button class="btn btn-primary btn-block">See related attachments
+        </button></a>
+        <br>
+    {% endif %}
+        {% if review %}
+        <form method="post">
+        {% else %}
+        <form method="post" enctype="multipart/form-data">
+        {% endif %}
+            {% csrf_token %}
+            <table border="1">
+                {{ form|crispy }}
+            </table>
+            {% if edit %}
+            <button class="btn btn-primary" type="submit">Save</button>
+            {% else %}
+            <button class="btn btn-primary" type="submit">Submit</button>
+            {% endif %}
+        </form>
+    <br>
+{% endblock content %}

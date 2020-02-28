@@ -1,0 +1,39 @@
+{% load staticfiles %}
+
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile App Catalog</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+{% if request.user.is_authenticated %}
+    <ul class="nav-bar">
+        <li class="nav-bar"><a href="{% url 'home' %}">Home</a></li>
+        <li class="nav-bar"><a href="{% url 'request' %}">New Request</a></li>
+        <li class="nav-bar"><a href="{% url 'all_requests'  %}">All Requests</a></li>
+        <li class="nav-bar"><a href="{% url 'change_password' %}">Account</a></li>
+        <li class="nav-bar"><a href="{% url 'help' %}">Help</a></li>
+        <li class="nav-bar" style="float: right"><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+    <h3 class="center">{{ user.username }}, you are already Logged in</h3>
+{% else %}
+    <h1>Mobile App Intake Review</h1>
+    {% block content %}
+        <body>
+        <form action='' method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <input type="submit" value="Sign Up">
+        </form>
+        </body>
+    {% endblock %}
+{% endif %}
+</html>

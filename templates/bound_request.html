@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+    <div class="container">
+        {% if requestObject.status != 3 and requestObject.status != 2 %}
+        <a href ="{% url 'edit_request' pk=pk %}"><button class="btn btn-primary btn-block">Click for Edit Mode
+        </button></a><br>
+        {% endif %}
+        <a href ="{% url 'attachments' pk=pk %}"><button class="btn btn-primary btn-block">See related attachments
+        </button></a>
+    </div>
+        <br>
+        <form method="get">
+            {% csrf_token %}
+            <table border="1">
+                {{ form|crispy }}
+            </table>
+        </form>
+    </div>
+{% endblock content %}
